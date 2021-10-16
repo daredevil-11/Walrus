@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Walrus.Rouge.Api", "Walrus.Rouge.Api\Walrus.Rouge.Api.csproj", "{BCEB0F4A-3B79-4556-B6F7-080D012DA87F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{DC93DDB9-A0BC-409D-92F9-A0A41930E5FB}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Walrus.Rouge.Api", "src\Walrus.Rouge.Api\Walrus.Rouge.Api.csproj", "{C033A3FC-9E5D-4E4D-A87F-73EA81A703BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,13 +13,16 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{BCEB0F4A-3B79-4556-B6F7-080D012DA87F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BCEB0F4A-3B79-4556-B6F7-080D012DA87F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BCEB0F4A-3B79-4556-B6F7-080D012DA87F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BCEB0F4A-3B79-4556-B6F7-080D012DA87F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C033A3FC-9E5D-4E4D-A87F-73EA81A703BA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C033A3FC-9E5D-4E4D-A87F-73EA81A703BA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C033A3FC-9E5D-4E4D-A87F-73EA81A703BA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C033A3FC-9E5D-4E4D-A87F-73EA81A703BA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C033A3FC-9E5D-4E4D-A87F-73EA81A703BA} = {DC93DDB9-A0BC-409D-92F9-A0A41930E5FB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {271770A7-7BF2-4A6C-B654-E8CEC60DDD76}
