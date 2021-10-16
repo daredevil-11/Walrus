@@ -26,7 +26,7 @@ namespace Walrus.Undeterred.Controllers
         {
             var swOverall = Stopwatch.StartNew();
             var swRouge = new Stopwatch();
-            _logger.LogInformation($"[{DateTimeOffset.UtcNow}]UndeterredController.Get: Starting Api call...");
+            _logger.LogInformation($"UndeterredController.Get: Starting Api call...");
 
             // do some stuff...
 
@@ -39,8 +39,8 @@ namespace Walrus.Undeterred.Controllers
                     (exception, timeSpan, retries, context) => 
                     {
 
-                        _logger.LogError($"[{DateTimeOffset.UtcNow}]UndeterredController.Get: Exception while calling Rouge Api [Retries: {retries}, Current executionTime: {swRouge.ElapsedMilliseconds} ms]...");
-                        _logger.LogError($"[{DateTimeOffset.UtcNow}]UndeterredController.Get: Next call to Rouge Api will be after {timeSpan.TotalSeconds} secs.");
+                        _logger.LogError($"UndeterredController.Get: Exception while calling Rouge Api [Retries: {retries}, executionTime: {swRouge.ElapsedMilliseconds} ms]...");
+                        _logger.LogError($"UndeterredController.Get: Next call to Rouge Api will be after {timeSpan.TotalSeconds} secs.");
 
                         // notify ui of failure...
 

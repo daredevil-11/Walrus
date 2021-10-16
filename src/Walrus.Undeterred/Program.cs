@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using Serilog.Extensions.Logging.File;
 
 namespace Walrus.Undeterred
 {
@@ -13,10 +12,6 @@ namespace Walrus.Undeterred
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
-                .ConfigureLogging((context, loggingBuilder) =>
-                {
-                    //loggingBuilder.AddFile("Logs/walrusundeterredlog-{Date}.txt");
-                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
