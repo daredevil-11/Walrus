@@ -1,10 +1,11 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.SpaServices.AngularCli;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System;
+using Walrus.Undeterred.Core;
 
 namespace Walrus.Undeterred
 {
@@ -21,6 +22,14 @@ namespace Walrus.Undeterred
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services
+                .AddHttpClient<IRougeCore, RougeCore>(c =>
+                {
+                    c.BaseAddress = new Uri(Configuration.GetValue<string>("Walrus:RougeApi:Base"));
+                })
+                .SetHandlerLifetime(TimeSpan.FromMinutes(5));
+
             // In production, the Angular files will be served from this directory
             services.AddSpaStaticFiles(configuration =>
             {

@@ -27,7 +27,7 @@ namespace Walrus.Rouge.Api.Controllers
                 failureType = (Constants.FailureTypes)(DateTimeOffset.Now.Millisecond % 2 + 1);
                 _memoryCache.Set(Constants._failureType, failureType.ToString(), new MemoryCacheEntryOptions()
                 {
-                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(5)
+                    AbsoluteExpirationRelativeToNow = TimeSpan.FromMinutes(3)
                 });
                 _memoryCache.Set(Constants._failureCount, 0);
             }
@@ -64,7 +64,7 @@ namespace Walrus.Rouge.Api.Controllers
             {
                 if (++failureCount <= MAX_FAILURE_COUNT)
                 {
-                    Thread.Sleep(TimeSpan.FromMinutes(1));
+                    Thread.Sleep(TimeSpan.FromSeconds(30));
                     _memoryCache.Set(Constants._failureCount, failureCount);
                     return new ObjectResult(null)
                     {
