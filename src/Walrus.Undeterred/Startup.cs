@@ -7,6 +7,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System;
 using Walrus.Undeterred.Core;
+using Walrus.Undeterred.Hubs;
 
 namespace Walrus.Undeterred
 {
@@ -36,6 +37,8 @@ namespace Walrus.Undeterred
             {
                 configuration.RootPath = "ClientApp/dist";
             });
+
+            services.AddSignalR();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,6 +64,8 @@ namespace Walrus.Undeterred
                 app.UseSpaStaticFiles();
             }
 
+            app.UseWebSockets();
+
             app.UseRouting();
 
             app.UseEndpoints(endpoints =>
@@ -68,6 +73,7 @@ namespace Walrus.Undeterred
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller}/{action=Index}/{id?}");
+                endpoints.MapHub<UndeterredApiHub>("/undeterredApiHub");
             });
 
             app.UseSpa(spa =>

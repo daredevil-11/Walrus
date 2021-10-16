@@ -1,10 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Logging;
 using Polly;
 using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 using Walrus.Undeterred.Core;
+using Walrus.Undeterred.Hubs;
 
 namespace Walrus.Undeterred.Controllers
 {
@@ -14,10 +16,13 @@ namespace Walrus.Undeterred.Controllers
     {
         private readonly IRougeCore _rougeCore;
         private readonly ILogger<UndeterredController> _logger;
+        private readonly IHubContext<UndeterredApiHub> _apiHubContext;
 
-        public UndeterredController(IRougeCore rougeCore, ILogger<UndeterredController> logger)
+        public UndeterredController(IRougeCore rougeCore, 
+            IHubContext<UndeterredApiHub> apiHubContext, ILogger<UndeterredController> logger)
         {
             _rougeCore = rougeCore ?? throw new ArgumentNullException(nameof(rougeCore));
+            _apiHubContext = apiHubContext ?? throw new ArgumentNullException(nameof(apiHubContext));
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
         }
 
@@ -43,7 +48,7 @@ namespace Walrus.Undeterred.Controllers
                         _logger.LogError($"UndeterredController.Get: Next call to Rouge Api will be after {timeSpan.TotalSeconds} secs.");
 
                         // notify ui of failure...
-
+                        _apiHubContext.Clients.All.SendAsync(UndeterredApiHubAction.ROUGE_API_ISSUE, retries);
                     }
                 );
 
